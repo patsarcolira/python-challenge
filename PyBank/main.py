@@ -40,3 +40,34 @@ print("max_increase_profit_date = " + str(max_increase_profit_date))
 print("max_decrease_losses_amount = " + str(max_decrease_losses_amount))
 print("max_decrease_losses_date = " +  str(max_decrease_losses_date))
 
+with open(csvpath, 'r') as csvfile:
+#     CSV reader specifies delimiter and variable that holds contents
+    csvreader = csv.reader(csvfile, delimiter=",")
+    #print(csvreader)
+    for row  in csvreader:
+        try:
+            data.append([row[0], float(row[1])])
+        except:
+            pass
+    row=0
+    print("Here is the Data")
+    for item in data:
+        print(item)
+    item = 0
+    # Data to Columns
+    for row  in data:
+        dates.append(row[0])
+    row=0
+    print("Show only dates")
+    for item in dates:
+        print(item)
+    item = 0
+    for row  in data:
+        profit_losses.append(row[1])
+    row = 0
+    print("Show only losses and profits")
+    for item in profit_losses:
+        print(item)
+    item = 0
+
+   
