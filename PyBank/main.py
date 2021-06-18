@@ -18,7 +18,7 @@ print(csvpathout)
 data = []
 dates = []
 profit_losses=[]
-change_amount=[]
+change_amounts=[]
 #* The total number of months included in the dataset
 total_months = 0
 #* The net total amount of "Profit/Losses" over the entire period
@@ -81,8 +81,18 @@ total_net_profit_losses = sum(profit_losses)
 print(f"Total: $", total_net_profit_losses)
 
 # * The average of the changes in "Profit/Losses" over the entire period
-
-
+# Create a list of change in profit and losses
+change_amounts.insert(0, 0.0)
+change = profit_losses[0]
+for row  in profit_losses:
+    change = change - profit_losses[row]
+    change_amounts.insert(row, change) 
+    # original_amount = int(profit_losses[row])
+    # next_amount= profit_losses[row+1] 
+    # change = next_amount - original_amount
+    # change_amounts[row+1]= change
+        
+        
 #change_amount=[]
 
 #avg_change_profit_losses
