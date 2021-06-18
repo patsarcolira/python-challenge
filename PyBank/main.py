@@ -18,6 +18,7 @@ print(csvpathout)
 data = []
 dates = []
 profit_losses=[]
+change_amount=[]
 #* The total number of months included in the dataset
 total_months = 0
 #* The net total amount of "Profit/Losses" over the entire period
@@ -70,4 +71,21 @@ with open(csvpath, 'r') as csvfile:
         print(item)
     item = 0
 
-   
+# * The total number of months included in the dataset
+print('Financial Analysis')
+print('----------------------------')
+print(f"Total Months: ", len(dates))
+
+# * The net total amount of "Profit/Losses" over the entire period
+total_net_profit_losses = sum(profit_losses)
+print(f"Total: $", total_net_profit_losses)
+
+# * The average of the changes in "Profit/Losses" over the entire period
+
+
+#change_amount=[]
+
+#avg_change_profit_losses
+# * The greatest increase in profits (date and amount) over the entire period
+
+# * The greatest decrease in losses (date and amount) over the entire period
