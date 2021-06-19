@@ -13,20 +13,16 @@ data = []
 voter_id= []
 county=[]
 candidate=[]
-#* The total number of voters included in the dataset
-total_voters = 0
-#* The net total amount of "Profit/Losses" over the entire period
-total_net_profit_losses = 0
-#* The average of the changes in "Profit/Losses" over the entire period
-avg_change_profit_losses = 0
-#* The greatest increase in profits (date and amount) over the entire period
-max_increase_profit_amount = 0
-max_increase_profit_date = 0
-#* The greatest decrease in losses (date and amount) over the entire period
-max_decrease_losses_amount = 0
-max_decrease_losses_date = 0
+name="[]"
+who_is_running=[]
+candidates_vote_list=[]
+votes_khan = 0
+votes_correy = 0
+votes_li = 0
+votes_o_tooley = 0
+#     Open a dread CSV reader specifies delimiter and variable that holds contents
+
 with open(csvpath, 'r') as csvfile:
-#     CSV reader specifies delimiter and variable that holds contents
     csvreader = csv.reader(csvfile, delimiter=",")
     #print(csvreader)
     for row  in csvreader:
@@ -35,10 +31,6 @@ with open(csvpath, 'r') as csvfile:
         except:
             pass
     row=0
-# print("Here is the Data ")
-    # for item in data:
-    #     print(item)
-# item = 0
 # Data to Columns
 for row  in data:
     voter_id.append(int(row[0]))
@@ -47,3 +39,45 @@ for row  in data:
 row=0
 # for item in range(4):
 #     print(voter_id[item], county[item], candidate[item])
+
+# * The total number of votes cast
+total_votes = len(voter_id)
+print('Election Results')
+print('----------------------------')
+print(f"Total Votes: ", total_votes)
+print('----------------------------')
+# * A complete list of candidates who received votes
+for row  in candidate:
+    name = row
+    if name not in who_is_running:
+        who_is_running.append(name)
+print(f"Who_is_running? , {who_is_running}")
+
+
+
+
+# for row in candidate:
+
+#     for row in csv_reader:
+#             #Votes per candidate
+#         if candidate in candidates:
+#            candidate_index = candidates.index(candidate)
+#            vote_count[candidate_index] = vote_count[candidate_index] + 1
+#         else:
+#            candidates.append(candidate)
+#            vote_count.append(1)
+
+
+
+#     candidate_cast= str(candidate[row])
+#     if candidate_cast == "Khan" :
+#         votes_khan = votes_khan + 1
+#     elif candidate_cast == "Correy" :
+#         votes_correy = votes_correy + 1
+#     elif candidate_cast == "Li" :
+#         votes_li = votes_li + 1
+#     elif candidate_cast == "O\'Tooley" :
+#         votes_o_tooley = votes_o_tooley + 1
+#     else:
+#         pass
+# print(f"votes_khan", votes_khan, "votes_correy", votes_correy,"votes_li",votes_li,"votes_o_tooley",votes_o_tooley)
