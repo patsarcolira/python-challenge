@@ -25,15 +25,15 @@ max_increase_profit_date = 0
 #* The greatest decrease in losses (date and amount) over the entire period
 max_decrease_losses_amount = 0
 max_decrease_losses_date = 0
-print("Financial Analysis")
-print("----------------------------")
-print("total_months = " + str(total_months))
-print("total_net_profit_losses = " + str(total_net_profit_losses))
-print("avg_change_profit_losses = " + str(avg_change_profit_losses))
-print("max_increase_profit_amount = " + str(max_increase_profit_amount))
-print("max_increase_profit_date = " + str(max_increase_profit_date))
-print("max_decrease_losses_amount = " + str(max_decrease_losses_amount))
-print("max_decrease_losses_date = " +  str(max_decrease_losses_date))
+# print("Financial Analysis")
+# print("----------------------------")
+# print("total_months = " + str(total_months))
+# print("total_net_profit_losses = " + str(total_net_profit_losses))
+# print("avg_change_profit_losses = " + str(avg_change_profit_losses))
+# print("max_increase_profit_amount = " + str(max_increase_profit_amount))
+# print("max_increase_profit_date = " + str(max_increase_profit_date))
+# print("max_decrease_losses_amount = " + str(max_decrease_losses_amount))
+# print("max_decrease_losses_date = " +  str(max_decrease_losses_date))
 
 with open(csvpath, 'r') as csvfile:
 #     CSV reader specifies delimiter and variable that holds contents
@@ -45,31 +45,32 @@ with open(csvpath, 'r') as csvfile:
         except:
             pass
     row=0
-    print("Here is the Data")
-    for item in data:
-        print(item)
-    item = 0
+    # print("Here is the Data")
+    # for item in data:
+    #     print(item)
+    # item = 0
     # Data to Columns
     for row  in data:
         dates.append(row[0])
     row=0
-    print("Show only dates")
-    for item in dates:
-        print(item)
-    item = 0
+    # print("Show only dates")
+    # for item in dates:
+    #     print(item)
+    # item = 0
     for row  in data:
         profit_losses.append(row[1])
         change_amounts.append(row[1])
     row = 0
-    print("Show only losses and profits")
-    for item in profit_losses:
-        print(item)
-    item = 0
+    # print("Show only losses and profits")
+    # for item in profit_losses:
+    #     print(item)
+    # item = 0
 
 # * The total number of months included in the dataset
+total_months = len(dates)
 print('Financial Analysis')
 print('----------------------------')
-print(f"Total Months: ", len(dates))
+print(f"Total Months: ", total_months)
 
 # * The net total amount of "Profit/Losses" over the entire period
 total_net_profit_losses = sum(profit_losses)
@@ -81,7 +82,7 @@ previous_amount= profit_losses[0]
 row = 0
 row_change = 0
 #print(previous_amount, profit_losses[0])  len(profit_losses) len(change_amounts)
-for row in range(3):
+for row in range(len(profit_losses)):
     change_amounts[row_change] = (profit_losses[row]-previous_amount)
     #print(f"", change_amounts[row_change], " = ", profit_losses[row], " - ", previous_amount)
     previous_amount = profit_losses[row]
@@ -89,11 +90,13 @@ for row in range(3):
 row=0
 row_change=0
 print("------------------------")
-for row_change in range(3):
-    print(change_amounts[row_change])
-sum = sum(change_amounts)
-avg_change_profit_losses = sum/len(profit_losses)
-#print (avg_change_profit_losses)
+# for row_change in range(len(change_amounts)):
+#     print(change_amounts[row_change])
+sum=sum(change_amounts)
+print(sum)
+print (len(change_amounts))
+avg_change_profit_losses = sum/(len(change_amounts)-1)
+print (round(avg_change_profit_losses,2))
         
         
 #change_amount=[]
