@@ -96,9 +96,11 @@ sum=sum(change_amounts)
 # Calculate Average change
 avg_change_profit_losses = sum/(len(change_amounts)-1)
 print (f"Average Change: $", round(avg_change_profit_losses,2))
-print("----------------------------")
+
+# * The greatest increase in profits (date and amount) over the entire period
 row_dates_max=0
 row_ch_max=0
+row_ch=0
 for row_ch in range(len(change_amounts)):
     difference=  change_amounts[row_ch] - max_increase_profit_amount
     if difference > 0 :
@@ -106,11 +108,19 @@ for row_ch in range(len(change_amounts)):
         row_ch_max = row_ch
         row_dates_max = row_ch
 print(f"Greatest Increase in Profits: ", dates[row_dates_max], " ($", change_amounts[row_ch_max], ")")
-        
-        
-#change_amount=[]
-
-#avg_change_profit_losses
-# * The greatest increase in profits (date and amount) over the entire period
 
 # * The greatest decrease in losses (date and amount) over the entire period
+row_dates_min=0
+row_ch_min=0
+row_ch=0
+for row_ch in range(len(change_amounts)):
+    difference = change_amounts[row_ch] - max_decrease_losses_amount
+    if difference < 0 :
+        max_decrease_losses_amount = change_amounts[row_ch]
+        row_ch_min = row_ch
+        row_dates_min = row_ch
+print(f"Greatest Decrease in Profits: ", dates[row_dates_min], " ($", change_amounts[row_ch_min], ")")
+print("----------------------------")   
+#* Print the analysis to the terminal 
+
+# Export a text file the results.
