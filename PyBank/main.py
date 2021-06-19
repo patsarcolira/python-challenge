@@ -1,20 +1,14 @@
 # Import dependencies
 import os
 import csv
-#import .csv file and export a text file (.tx) with the results
+import math
+
+#import .csv file and export a text file (.txt) with the results
 csvpath = os.path.join("Resources", "budget_data.csv")
 print(csvpath)
 csvpathout = os.path.join("analysis","PyBankResoults.txt")
 print(csvpathout)
-# Import dependencies
-import os
-import csv
-#import .csv file and export a text file (.tx) with the results
-csvpath = os.path.join("Resources", "budget_data.csv")
-print(csvpath)
-csvpathout = os.path.join("analysis","PyBankResoults.txt")
-print(csvpathout)
-# Create lists to read the file
+# Create lists to read file
 data = []
 dates = []
 profit_losses=[]
@@ -65,6 +59,7 @@ with open(csvpath, 'r') as csvfile:
     item = 0
     for row  in data:
         profit_losses.append(row[1])
+        change_amounts.append(row[1])
     row = 0
     print("Show only losses and profits")
     for item in profit_losses:
@@ -81,16 +76,24 @@ total_net_profit_losses = sum(profit_losses)
 print(f"Total: $", total_net_profit_losses)
 
 # * The average of the changes in "Profit/Losses" over the entire period
-# Create a list of change in profit and losses
-change_amounts.insert(0, 0.0)
-change = profit_losses[0]
-for row  in profit_losses:
-    change = change - profit_losses[row]
-    change_amounts.insert(row, change) 
-    # original_amount = int(profit_losses[row])
-    # next_amount= profit_losses[row+1] 
-    # change = next_amount - original_amount
-    # change_amounts[row+1]= change
+# Create a list of change in profit and losses -- total_net_profit_losses -- avg_change_profit_losses
+previous_amount= profit_losses[0]
+row = 0
+row_change = 0
+#print(previous_amount, profit_losses[0])  len(profit_losses) len(change_amounts)
+for row in range(3):
+    change_amounts[row_change] = (profit_losses[row]-previous_amount)
+    #print(f"", change_amounts[row_change], " = ", profit_losses[row], " - ", previous_amount)
+    previous_amount = profit_losses[row]
+    row_change=row_change + 1
+row=0
+row_change=0
+print("------------------------")
+for row_change in range(3):
+    print(change_amounts[row_change])
+sum = sum(change_amounts)
+avg_change_profit_losses = sum/len(profit_losses)
+#print (avg_change_profit_losses)
         
         
 #change_amount=[]
