@@ -77,7 +77,7 @@ total_net_profit_losses = sum(profit_losses)
 print(f"Total: $", total_net_profit_losses)
 
 # * The average of the changes in "Profit/Losses" over the entire period
-# Create a list of change in profit and losses -- total_net_profit_losses -- avg_change_profit_losses
+# Create a list of change in profit and losses called change_amounts[]
 previous_amount= profit_losses[0]
 row = 0
 row_change = 0
@@ -89,14 +89,23 @@ for row in range(len(profit_losses)):
     row_change=row_change + 1
 row=0
 row_change=0
-print("------------------------")
-# for row_change in range(len(change_amounts)):
-#     print(change_amounts[row_change])
+# Sum all values in list change_amounts[]
 sum=sum(change_amounts)
-print(sum)
-print (len(change_amounts))
+# print(sum)
+# print (len(change_amounts))
+# Calculate Average change
 avg_change_profit_losses = sum/(len(change_amounts)-1)
-print (round(avg_change_profit_losses,2))
+print (f"Average Change: $", round(avg_change_profit_losses,2))
+print("----------------------------")
+row_dates_max=0
+row_ch_max=0
+for row_ch in range(len(change_amounts)):
+    difference=  change_amounts[row_ch] - max_increase_profit_amount
+    if difference > 0 :
+        max_increase_profit_amount = change_amounts[row_ch]
+        row_ch_max = row_ch
+        row_dates_max = row_ch
+print(f"Greatest Increase in Profits: ", dates[row_dates_max], " ($", change_amounts[row_ch_max], ")")
         
         
 #change_amount=[]
