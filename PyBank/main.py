@@ -5,9 +5,9 @@ import math
 
 #import .csv file and export a text file (.txt) with the results
 csvpath = os.path.join("Resources", "budget_data.csv")
-print(csvpath)
+# print(csvpath)
 csvpathout = os.path.join("analysis","PyBankResoults.txt")
-print(csvpathout)
+# print(csvpathout)
 # Create lists to read file
 data = []
 dates = []
@@ -68,13 +68,13 @@ with open(csvpath, 'r') as csvfile:
 
 # * The total number of months included in the dataset
 total_months = len(dates)
-print('Financial Analysis')
-print('----------------------------')
-print(f"Total Months: ", total_months)
+# print('Financial Analysis')
+# print('----------------------------')
+# print(f"Total Months: ", total_months)
 
 # * The net total amount of "Profit/Losses" over the entire period
 total_net_profit_losses = sum(profit_losses)
-print(f"Total: $", total_net_profit_losses)
+# print(f"Total: $", total_net_profit_losses)
 
 # * The average of the changes in "Profit/Losses" over the entire period
 # Create a list of change in profit and losses called change_amounts[]
@@ -95,7 +95,7 @@ sum=sum(change_amounts)
 # print (len(change_amounts))
 # Calculate Average change
 avg_change_profit_losses = sum/(len(change_amounts)-1)
-print (f"Average Change: $", round(avg_change_profit_losses,2))
+# print (f"Average Change: $", round(avg_change_profit_losses,2))
 
 # * The greatest increase in profits (date and amount) over the entire period
 row_dates_max=0
@@ -107,7 +107,7 @@ for row_ch in range(len(change_amounts)):
         max_increase_profit_amount = change_amounts[row_ch]
         row_ch_max = row_ch
         row_dates_max = row_ch
-print(f"Greatest Increase in Profits: ", dates[row_dates_max], " ($", change_amounts[row_ch_max], ")")
+# print(f"Greatest Increase in Profits: ", dates[row_dates_max], " ($", change_amounts[row_ch_max], ")")
 
 # * The greatest decrease in losses (date and amount) over the entire period
 row_dates_min=0
@@ -119,8 +119,18 @@ for row_ch in range(len(change_amounts)):
         max_decrease_losses_amount = change_amounts[row_ch]
         row_ch_min = row_ch
         row_dates_min = row_ch
-print(f"Greatest Decrease in Profits: ", dates[row_dates_min], " ($", change_amounts[row_ch_min], ")")
-print("----------------------------")   
+# print(f"Greatest Decrease in Profits: ", dates[row_dates_min], " ($", change_amounts[row_ch_min], ")")
+# print("----------------------------")   
 #* Print the analysis to the terminal 
-
-# Export a text file the results.
+print(f"Financial Analysis")
+print(f"----------------------------------------------------------")
+print(f"Total Months: ", total_months)
+print(f"Total: $", total_net_profit_losses)
+print (f"Average Change: $", round(avg_change_profit_losses,2))
+print(f"Greatest Increase in Profits: ", dates[row_dates_max], " ($", change_amounts[row_ch_max], ")")
+print(f"Greatest Decrease in Profits: ", dates[row_dates_min], " ($", change_amounts[row_ch_min], ")")
+print("----------------------------------------------------------")
+# Export a text file the results
+lines= ["Financial Analysis\n", "----------------------------------------------------------\n",f"Total Months: {total_months}\n",f"Total: ${total_net_profit_losses}\n",f"Average Change: ${round(avg_change_profit_losses,2)}\n",f"Greatest Increase in Profits: {dates[row_dates_max]} (${change_amounts[row_ch_max]})\n",f"Greatest Decrease in Profits: {dates[row_dates_min]} ${change_amounts[row_ch_min]}\n","----------------------------------------------------------\n"]
+with open(csvpathout, 'w') as txtfile:
+    txtfile.writelines(lines)
